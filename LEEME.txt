@@ -1,0 +1,50 @@
+IEEE754-Converter - Conversor de coma flotante
+==============================================
+
+Autor: Oscar Blanco Novoa (o.blanco) <o.blanco@udc.es>
+Version: 1.0 (Relase)
+
+
+
+Introducción:
+------------
+IEEE754-Converter es un programa capaz de convertir números representados en el estándar IEEE-754-2008 de 32 y 64 bits a decimal y a la inversa, con el objetivo de poder analizar la estructura en la que se representan los datos en coma flotante.
+
+    Valores de entrada válidos:
+    --------------------------  
+        - Decimal: Puede introducir números enteros (123), decimales con coma o punto indistintamente (1,345) ó (0.35). En el caso de que el numero sea negativo este debe llevar precedido el signo      menos (-76.45) en caso contrario puede añadirse o no el signo mas indistintamente.
+        
+        - Hexadecimal: Puede introducir cualquier numero hexadecimal en mayusculas o minúsculas indistintamente, siempre que se ajuste a la longitud del estandar IEEE-754 y este precedido del prefijo 0x (0xAFF056E3)
+
+
+
+Modo de uso:
+-----------
+Primero necesitas tener instalado Free Pascal Compiler en tu ordenador, si no dispones de el puede instalarlo en ubuntu ejecutando el comando:
+ apt-get install fpc    (para mas informacion visita: http://www.freepascal.org/)
+ 
+Para compilar el programa podemos ejecutar directamente el archivo install.sh que se encuentra en este mismo directorio y se creará el archivo binario del programa a ejecutar desde la terminal.
+Como otra opcion podemos acceder a la carpeta src y ejecutar:
+ fpc IEEE754-Converter.pas
+
+
+OPCIONES:
+--------
+./IEEE754-Converter (ieeetodec | dectoieee) (sp | dp) NUMERO [--DEBUG] [--DETAIL]
+    
+    - ieeetodec: permite insertar un numero en formato ieee754 en hexadecimal (0x00000000)
+    - dectoieee: permite insertar un numero decimal en cualquier formato (-0,873633)
+    - sp: Precision simple
+    - dp: Precision doble
+    - NUMERO: numero a convertir (El formato de este parametro debe ser compatible con los anteriores)
+    - --DEBUG: Ofrece información DETALLADA de cada una de las operaciones que realiza el programa con el objetivo de detectar errores
+    - --DETAIL: Esta opción es MUY RECOMENDADA pues añade a la salida un esquema del formato del numero. [ SIGNO  |  EXPONENTE  |  MANTISA ]
+
+EJEMPLO:
+$ ./IEEE754-Converter ieeetodec sp 0x41240000 --DETAIL
+ 0  |  10000010  |  0100100000000000000000
+ 1.02500000000000E+001
+ 
+$ ./IEEE754-Converter dectoieee sp 10,25
+ 0x41240000
+
